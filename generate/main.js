@@ -1,7 +1,13 @@
 // generate/main.js
+import { inject } from '@vercel/analytics';
 import './style.css';
 import L from 'leaflet';
 import { translations } from './translations.js';
+
+inject({
+  mode: 'production', // 'development', 'production'
+  debug: false // true for debug
+});
 
 // ===== LANGUAGE MANAGEMENT =====
 let currentLang = 'en';

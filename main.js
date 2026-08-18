@@ -1,5 +1,12 @@
+// main.js
+import { inject } from '@vercel/analytics';
 import './style.css';
 import { getWeatherIcon } from './icons.js';
+
+inject({
+  mode: 'production', // 'development', 'production'
+  debug: false // true for debug
+});
 
 // Get parameters from URL
 const params = new URLSearchParams(window.location.search);

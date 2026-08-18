@@ -2,6 +2,8 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
+const __dirname = import.meta.dirname;
+
 export default defineConfig({
   base: '/',
   
