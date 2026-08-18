@@ -93,18 +93,18 @@ export function getThermometer(temp) {
   const percent = ((clampedTemp + 30) / 70) * 100;
   const fillPercent = Math.max(5, Math.min(95, percent));
 
-return `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="32" cy="50" r="10"/>
-      <path d="M28 14 L28 42" stroke-width="3.5"/>
-      <path d="M36 14 L36 42" stroke-width="3.5"/>
-      <path d="M28 14 Q32 10 36 14" stroke-width="2.5"/>
-    </g>
-    <g fill="${color}">
-      <circle cx="32" cy="50" r="8.5"/>
-      <rect x="28.5" y="${14 + (95 - fillPercent) * 0.33}" width="7" height="${fillPercent * 0.33}" rx="3.5"/>
-    </g>
-  </svg>`;
+  return `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="32" cy="50" r="10"/>
+        <path d="M28 14 L28 42" stroke-width="3.5"/>
+        <path d="M36 14 L36 42" stroke-width="3.5"/>
+        <path d="M28 14 Q32 10 36 14" stroke-width="2.5"/>
+      </g>
+      <g fill="${color}">
+        <circle cx="32" cy="50" r="8.5"/>
+        <rect x="28.5" y="${14 + (95 - fillPercent) * 0.33}" width="7" height="${fillPercent * 0.33}" rx="3.5"/>
+      </g>
+    </svg>`;
 }
 
 // Function to get icon by weather code

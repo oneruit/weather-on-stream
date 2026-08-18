@@ -1,5 +1,5 @@
 // translations.js
-const translations = {
+export const translations = {
   ru: {
     title: 'Генератор ссылки для виджета погоды',
     subtitle: 'Настройте параметры и получите готовую ссылку для вставки в приложение',
@@ -45,8 +45,3 @@ const translations = {
     defaultLocation: 'London,UK'
   }
 };
-
-// Экспортируем для использования в других файлах
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = translations;
-}

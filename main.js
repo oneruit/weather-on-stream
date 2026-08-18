@@ -1,3 +1,4 @@
+import './style.css';
 import { getWeatherIcon } from './icons.js';
 
 // Get parameters from URL
@@ -120,28 +121,28 @@ function useLocalFallback() {
 // Load weather data
 async function loadWeather() {
   try {
-    const r = await fetch(`/api/weather?q=${query}&lang=${lang}`);
+    const response = await fetch(`/api/weather?q=${query}&lang=${lang}`);
 
-    if (!r.ok) {
-      console.log('[Weather] Fetch failed:', r.status);
+    if (!response.ok) {
+      console.log('[Weather] Fetch failed:', response.status);
       useLocalFallback();
       return;
     }
 
-    const d = await r.json();
+    const data = await response.json();
 
-    if (!d?.current?.condition?.code || !d?.location?.tz_id) {
-      console.log('[Weather] Invalid response:', d);
+    if (!data?.current?.condition?.code || !data?.location?.tz_id) {
+      console.log('[Weather] Invalid response:', data);
       useLocalFallback();
       return;
     }
 
-    currentData = d;
-    currentTz = d.location.tz_id;
+    currentData = data;
+    currentTz = data.location.tz_id;
     render();
 
-  } catch (e) {
-    console.log('[Weather] Error:', e);
+  } catch (error) {
+    console.log('[Weather] Error:', error);
     useLocalFallback();
   }
 }
@@ -158,7 +159,7 @@ function startClock() {
 
 // Init
 startClock();
-loadWeather().catch(e => console.log('[Weather] Init error:', e));
+loadWeather().catch(error => console.log('[Weather] Init error:', error));
 
 // Update weather every minute
 setInterval(loadWeather, 60000);

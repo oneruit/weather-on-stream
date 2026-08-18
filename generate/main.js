@@ -1,4 +1,8 @@
-// main.js
+// generate/main.js
+import './style.css';
+import L from 'leaflet';
+import { translations } from './translations.js';
+
 // ===== LANGUAGE MANAGEMENT =====
 let currentLang = 'en';
 
@@ -91,9 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Marker that will move on click
   let marker = L.marker([defaultLat, defaultLng], { draggable: true }).addTo(map);
-
-  // Coordinate input field
-  const locationInput = document.getElementById('location');
 
   // Function to update the input field
   function updateLocationFromCoords(lat, lng) {
@@ -245,3 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Делаем функции глобальными для onclick в HTML
+window.generateLink = generateLink;
+window.copyLink = copyLink;

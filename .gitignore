@@ -1,3 +1,6 @@
 .idea
 .vercel
 .env*
+
+node_modules
+dist
