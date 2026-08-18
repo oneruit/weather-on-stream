@@ -77,7 +77,7 @@ function render() {
         <div class="place">${locationName}, ${countryName}</div>
         <div class="condition">${conditionText}</div>
       </div>
-      <div class="info-column">
+      <div class="info-column time-column">
         <div class="time">
           <span>${t.hour}</span><span id="colon">:</span><span>${t.minute}</span>
         </div>

@@ -67,13 +67,17 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  text-align: center;
 }
 
 .info-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+}
+
+.time-column {
+  min-width: 70px;
 }
 
 .info-column .time {
