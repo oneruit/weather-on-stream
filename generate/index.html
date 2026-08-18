@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор виджета погоды</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Генератор ссылки для виджета погоды</h1>
+    <p class="subtitle">Настройте параметры и получите готовую ссылку для вставки на сайт</p>
+
+    <div class="settings-box">
+      <div class="form-group">
+        <label for="location">Координаты или город</label>
+        <input type="text" id="location" value="" placeholder="Например: Москва,Россия или 55.75,37.62">
+      </div>
+
+      <div class="form-group">
+        <label for="language">Язык</label>
+        <select id="language">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+          <option value="uk">Українська</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="pt">Portuguese</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="vi">Vietnamese</option>
+          <option value="zh">Chinese Simplified</option>
+          <option value="zh_tw">Chinese Traditional</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="apiKey">API Key (опционально)</label>
+        <input type="text" id="apiKey" placeholder="Оставьте пустым для использования ключа по умолчанию">
+        <div class="small-text">
+          Получить ключ можно на <a href="https://www.weatherapi.com/signup.aspx" target="_blank">WeatherAPI.com</a>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" onclick="generateLink()">
+        Сгенерировать ссылку
+      </button>
+    </div>
+
+    <div id="resultContainer" class="hidden result-box">
+      <h2>Ваша ссылка для виджета</h2>
+      <div class="link-container">
+        <a href="#" id="generatedLink" target="_blank"></a>
+        <button class="btn btn-success" onclick="copyLink()">Копировать</button>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>Как использовать:</h3>
+      <ol>
+        <li>Настройте параметры выше</li>
+        <li>Нажмите "Сгенерировать ссылку"</li>
+        <li>Скопируйте полученную ссылку</li>
+        <li>Создайте виджет web и вставьте ссылку</li>
+      </ol>
+    </div>
+  </div>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+</html>
