@@ -1,24 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Генератор виджета погоды</title>
+  <title>Weather Widget Generator</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Генератор ссылки для виджета погоды</h1>
-    <p class="subtitle">Настройте параметры и получите готовую ссылку для вставки на сайт</p>
+    <!-- Переключатель языка -->
+    <div class="language-switcher">
+      <button class="lang-btn active" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ru">Русский</button>
+    </div>
+
+    <h1 data-i18n="title">Генератор ссылки для виджета погоды</h1>
+    <p class="subtitle" data-i18n="subtitle">Настройте параметры и получите готовую ссылку для вставки в приложение</p>
 
     <div class="settings-box">
       <div class="form-group">
-        <label for="location">Координаты или город</label>
+        <label for="location" data-i18n="locationLabel">Координаты или город</label>
         <input type="text" id="location" value="" placeholder="Например: Москва,Россия или 55.75,37.62">
+        <input type="text" id="locationEn" value="" placeholder="e.g.: London,UK or 51.51,-0.13" style="display:none;">
+      </div>
+
+      <div class="form-group map-group">
+        <label data-i18n="mapLabel">Выберите место на карте (кликните для установки координат)</label>
+        <div id="map"></div>
+        <div class="map-hint" data-i18n="mapHint">📍 Нажмите на карту, чтобы установить координаты в поле выше.</div>
       </div>
 
       <div class="form-group">
-        <label for="language">Язык</label>
+        <label for="language" data-i18n="languageLabel">Язык</label>
         <select id="language">
           <option value="ru">Русский</option>
           <option value="en">English</option>
@@ -36,36 +51,34 @@
       </div>
 
       <div class="form-group">
-        <label for="apiKey">API Key (опционально)</label>
+        <label for="apiKey" data-i18n="apiKeyLabel">API Key (опционально)</label>
         <input type="text" id="apiKey" placeholder="Оставьте пустым для использования ключа по умолчанию">
-        <div class="small-text">
+        <input type="text" id="apiKeyEn" placeholder="Leave empty to use default key" style="display:none;">
+        <div class="small-text" data-i18n="apiKeyHint">
           Получить ключ можно на <a href="https://www.weatherapi.com/signup.aspx" target="_blank">WeatherAPI.com</a>
         </div>
       </div>
-
-      <button class="btn btn-primary" onclick="generateLink()">
-        Сгенерировать ссылку
-      </button>
     </div>
 
-    <div id="resultContainer" class="hidden result-box">
-      <h2>Ваша ссылка для виджета</h2>
+    <div id="resultContainer" class="result-box">
+      <h2 data-i18n="resultTitle">Ваша ссылка для виджета</h2>
       <div class="link-container">
         <a href="#" id="generatedLink" target="_blank"></a>
-        <button class="btn btn-success" onclick="copyLink()">Копировать</button>
+        <button class="btn btn-success" onclick="copyLink()" data-i18n="copyBtn">Копировать</button>
       </div>
     </div>
 
     <div class="info-box">
-      <h3>Как использовать:</h3>
+      <h3 data-i18n="howToTitle">Как использовать:</h3>
       <ol>
-        <li>Настройте параметры выше</li>
-        <li>Нажмите "Сгенерировать ссылку"</li>
-        <li>Скопируйте полученную ссылку</li>
-        <li>Создайте виджет web и вставьте ссылку</li>
+        <li data-i18n="step1">Настройте параметры выше</li>
+        <li data-i18n="step2">Ссылка генерируется автоматически</li>
+        <li data-i18n="step3">Скопируйте полученную ссылку</li>
+        <li data-i18n="step4">Создайте виджет web и вставьте ссылку</li>
       </ol>
     </div>
   </div>
+  <script type="text/javascript" src="./translations.js"></script>
   <script type="text/javascript" src="./main.js"></script>
 </body>
 </html>

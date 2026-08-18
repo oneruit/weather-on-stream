@@ -1,75 +1,74 @@
 # Weather Overlay Widget
 
-Минималистичный Web-виджет погоды и локального времени для OBS, PRISM Live Studio и стримов.
+A minimalistic web widget for displaying weather and local time, designed for OBS, PRISM Live Studio, and streaming setups.
 
-**Быстрый старт:** [Сгенерируйте](https://weather-oneru.vercel.app/generate/) ссылку и вставьте в приложение.
+**Quick Start:** [Generate](https://weather-oneru.vercel.app/generate/) a link and paste it into your broadcasting application.
 
-## Особенности
+## Features
 
-- Минималистичный дизайн
-- Отображение текущей погоды
-- Локальное время в выбранном городе
-- Автоматическое обновление каждые 10 минут
-- Настраиваемые параметры через URL
-- Легко встраивается как браузерный источник в OBS
+- Minimalistic design
+- Displays current weather conditions
+- Shows local time for the selected city
+- Auto-updates every 10 minutes
+- Customizable via URL parameters
+- Easy to add as a browser source in OBS
 
-## Параметры URL
+## URL Parameters
 
-Виджет настраивается через GET-параметры в URL:
+The widget can be customized using GET parameters in the URL:
 
-| Параметр | Описание | Значение по умолчанию | Пример |
-|----------|----------|----------------------|---------|
-| `q` | Местоположение (город, страна или координаты) | Корея,Сеул | `q=Москва,Россия` или `q=55.75,37.62` |
-| `lang` | Язык отображения | ru | `lang=en`, `lang=ru`, `lang=uk` |
-| `key` | API ключ WeatherAPI (опционально) | - | `key=your_api_key_here` |
+| Parameter | Description | Default Value | Example |
+|-----------|-------------|---------------|---------|
+| `q` | Location (city, country, or coordinates) | Korea,Seoul | `q=Moscow,Russia` or `q=55.75,37.62` |
+| `lang` | Display language | ru | `lang=en`, `lang=ru`, `lang=uk` |
+| `key` | WeatherAPI key (optional) | - | `key=your_api_key_here` |
 
-## Примеры использования
+## Usage Examples
 
-### Базовый виджет
+### Basic Widget
 
-https://weather-oneru.vercel.app?q=Москва,Россия&lang=ru
+https://weather-oneru.vercel.app/?q=New%20York&lang=en
 
-### Виджет с координатами
+### Widget with Coordinates
 
-https://weather-oneru.vercel.app?q=55.75,37.62&lang=ru
+https://weather-oneru.vercel.app/?q=40.71916,-73.99738&lang=en
 
-### Виджет с английским языком
+### Widget in Germany
 
-https://weather-oneru.vercel.app?q=London,UK&lang=en
+https://weather-oneru.vercel.app/?q=Berlin&lang=de
 
-### Виджет с пользовательским API ключом
+### Widget with Custom API Key
 
-https://weather-oneru.vercel.app?q=Токио,Япония&lang=ru&key=your_api_key_here
+https://weather-oneru.vercel.app/?q=東京都&lang=ja&key=your_api_key_here
 
+## OBS Installation
 
-## Установка в OBS
+1. Open OBS Studio
+2. Add a new source: `Browser Source`
+3. In the `URL` field, paste the generated link ([generate](https://weather-oneru.vercel.app/generate/))
+4. Adjust the size to fit your needs
+5. Enable `Refresh browser when scene becomes active` for automatic refreshing
+6. Click `OK`
 
-1. Откройте OBS Studio
-2. Добавьте новый источник: `Browser Source`
-3. В поле `URL` вставьте сгенерированную ссылку ([сгенерировать](https://weather-oneru.vercel.app/generate/))
-4. Настройте размер под свои нужды
-5. Включите опцию `Refresh browser when scene becomes active` для автоматического обновления
-6. Нажмите `OK`
+## PRISM Live Installation
 
-## Установка в PRISM Live
+1. Open PRISM Live Studio
+2. Add a widget → `Web`
+3. In the `URL` field, paste the generated link ([generate](https://weather-oneru.vercel.app/generate/))
+4. Click Save
+5. Add it to your scene
+6. Adjust the size to fit your needs
 
-1. Откройте PRISM Live
-2. Добавьте виджет - `Веб`
-3. В поле `URL` вставьте сгенерированную ссылку ([сгенерировать](https://weather-oneru.vercel.app/generate/))
-4. Нажмите сохранить
-5. Добавьте на сцену
-6. Настройте размер под свои нужды
-
-## Технические детали
+## Technical Details
 
 - **API**: WeatherAPI.com
-- **Обновление**: Каждые 10 минут
-- **Кэширование**: 10 минут (s-maxage=600)
+- **Update Interval**: Every 10 minutes
+- **Caching**: 10 minutes (s-maxage=600)
 
-## Совместимость
+## Compatibility
 
 - OBS Studio
 - PRISM Live Studio
 - XSplit Broadcaster
-- Любой браузер
-- Мобильные устройства
+- Any web browser
+- Mobile devices

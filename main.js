@@ -1,23 +1,23 @@
-import { getWeatherIcon, getThermometer } from './icons.js';
+import { getWeatherIcon } from './icons.js';
 
-// Получение параметров из URL
+// Get parameters from URL
 const params = new URLSearchParams(window.location.search);
 const query = params.get("q") || "Корея,Сеул";
 const lang = params.get("lang") || "ru";
 
-// Элемент для отображения погоды
+// Weather display element
 const el = document.getElementById("weather");
 
-// Состояние
+// State
 let currentData = null;
 let currentTz = null;
 let isFading = false;
 
-// Получение времени с учетом часового пояса
+// Get time with timezone
 function getTimeParts() {
   if (!currentTz) return null;
 
-  const parts = new Intl.DateTimeFormat("ru-RU", {
+  const parts = new Intl.DateTimeFormat("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
@@ -31,7 +31,7 @@ function getTimeParts() {
   return map;
 }
 
-// Основная функция рендеринга
+// Main render function
 function render() {
   if (!currentData || !currentTz) return;
 
@@ -43,12 +43,22 @@ function render() {
   const conditionText = currentData.current.condition.text;
   const locationName = currentData.location.name;
   const countryName = currentData.location.country;
-  const isFallback = currentData.is_fallback || false;
-  const iconHtml = getWeatherIcon(currentData.current.condition.code, temp);
-  // Определяем класс для температуры
+  const conditionCode = currentData.current.condition.code;
+  const iconHtml = getWeatherIcon(conditionCode, temp);
+
+  // Debug logs
+  console.debug('[Weather Debug]', {
+    temp,
+    conditionText,
+    locationName,
+    countryName,
+    conditionCode
+  });
+
+  // Determine temperature class
   const tempClass = temp >= 0 ? 'positive' : 'negative';
-  
-  // Формируем HTML
+
+  // Build HTML
   el.innerHTML = `
     <div class="weather-icon">${iconHtml}</div>
     
@@ -67,11 +77,11 @@ function render() {
     </div>
   `;
 
-  // Анимация двоеточия на 59-й секунде
+  // Colon animation on 59th second
   if (sec === 59 && !isFading) {
     isFading = true;
     const colonEl = document.getElementById("colon");
-    
+
     if (colonEl) {
       setTimeout(() => {
         colonEl.classList.add("fade");
@@ -86,34 +96,34 @@ function render() {
   }
 }
 
-// Локальная заглушка
+// Local fallback
 function useLocalFallback() {
+  console.log('[Weather] Using fallback data');
   currentData = {
     location: {
-      name: "Город",
-      country: "Страна",
+      name: "City",
+      country: "Country",
       tz_id: "Europe/Moscow"
     },
     current: {
       temp_c: 0,
       condition: {
         code: 1000,
-        text: "Данные недоступны"
+        text: "Data unavailable"
       }
-    },
-    is_fallback: true
+    }
   };
   currentTz = currentData.location.tz_id;
   render();
 }
 
-// Загрузка данных о погоде
+// Load weather data
 async function loadWeather() {
   try {
     const r = await fetch(`/api/weather?q=${query}&lang=${lang}`);
 
     if (!r.ok) {
-      console.log("weather fetch failed:", r.status);
+      console.log('[Weather] Fetch failed:', r.status);
       useLocalFallback();
       return;
     }
@@ -121,7 +131,7 @@ async function loadWeather() {
     const d = await r.json();
 
     if (!d?.current?.condition?.code || !d?.location?.tz_id) {
-      console.log("weather invalid response:", d);
+      console.log('[Weather] Invalid response:', d);
       useLocalFallback();
       return;
     }
@@ -131,12 +141,12 @@ async function loadWeather() {
     render();
 
   } catch (e) {
-    console.log("weather error:", e);
+    console.log('[Weather] Error:', e);
     useLocalFallback();
   }
 }
 
-// Запуск часов с синхронизацией по секундам
+// Start clock with second sync
 function startClock() {
   const delay = 1000 - new Date().getMilliseconds();
 
@@ -146,9 +156,9 @@ function startClock() {
   }, delay);
 }
 
-// Инициализация
+// Init
 startClock();
-loadWeather();
+loadWeather().catch(e => console.log('[Weather] Init error:', e));
 
-// Обновление погоды каждую минуту
+// Update weather every minute
 setInterval(loadWeather, 60000);

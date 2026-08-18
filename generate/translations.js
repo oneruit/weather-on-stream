@@ -1,0 +1,52 @@
+// translations.js
+const translations = {
+  ru: {
+    title: 'Генератор ссылки для виджета погоды',
+    subtitle: 'Настройте параметры и получите готовую ссылку для вставки в приложение',
+    locationLabel: 'Координаты или город',
+    mapLabel: 'Выберите место на карте (кликните для установки координат)',
+    mapHint: '📍 Нажмите на карту, чтобы установить координаты в поле выше.',
+    languageLabel: 'Язык',
+    apiKeyLabel: 'API Key (опционально)',
+    apiKeyHint: 'Получить ключ можно на <a href="https://www.weatherapi.com/signup.aspx" target="_blank">WeatherAPI.com</a>',
+    resultTitle: 'Ваша ссылка для виджета',
+    copyBtn: 'Копировать',
+    howToTitle: 'Как использовать:',
+    step1: 'Настройте параметры выше',
+    step2: 'Ссылка генерируется автоматически',
+    step3: 'Скопируйте полученную ссылку',
+    step4: 'Создайте виджет web и вставьте ссылку',
+    locationPlaceholder: 'Например: Москва,Россия или 55.75,37.62',
+    apiKeyPlaceholder: 'Оставьте пустым для использования ключа по умолчанию',
+    copied: 'Ссылка скопирована!',
+    copyError: 'Ошибка при копировании',
+    defaultLocation: 'Москва,Россия'
+  },
+  en: {
+    title: 'Weather Widget Link Generator',
+    subtitle: 'Configure parameters and get a ready link to embed in your application',
+    locationLabel: 'Coordinates or city',
+    mapLabel: 'Select location on map (click to set coordinates)',
+    mapHint: '📍 Click on the map to set coordinates in the field above.',
+    languageLabel: 'Language',
+    apiKeyLabel: 'API Key (optional)',
+    apiKeyHint: 'Get a key at <a href="https://www.weatherapi.com/signup.aspx" target="_blank">WeatherAPI.com</a>',
+    resultTitle: 'Your widget link',
+    copyBtn: 'Copy',
+    howToTitle: 'How to use:',
+    step1: 'Configure parameters above',
+    step2: 'Link is generated automatically',
+    step3: 'Copy the generated link',
+    step4: 'Create a web widget and paste the link',
+    locationPlaceholder: 'e.g.: London,UK or 51.51,-0.13',
+    apiKeyPlaceholder: 'Leave empty to use default key',
+    copied: 'Link copied!',
+    copyError: 'Error copying',
+    defaultLocation: 'London,UK'
+  }
+};
+
+// Экспортируем для использования в других файлах
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = translations;
+}

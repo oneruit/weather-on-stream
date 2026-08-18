@@ -140,3 +140,60 @@ input:focus, select:focus {
     line-height: 2;
     padding-left: 20px;
 }
+/* Дополнительные стили для карты в рамках существующего дизайна */
+#map {
+  height: 300px;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+.map-hint {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+.form-group.map-group {
+  margin-bottom: 12px;
+}
+/* Скрываем watermark Leaflet */
+.leaflet-control-attribution {
+  display: none !important;
+}
+/* Скрываем логотип Leaflet */
+.leaflet-control-logo {
+  display: none !important;
+}
+/* Дополнительно скрываем любые другие элементы с атрибуцией */
+.leaflet-control-container .leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Добавьте в style.css */
+.language-switcher {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.lang-btn {
+  padding: 8px 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.lang-btn:hover {
+  background: #f0f0f0;
+}
+
+.lang-btn.active {
+  border-color: #4CAF50;
+  background: #e8f5e9;
+  font-weight: bold;
+}
